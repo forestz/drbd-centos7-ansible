@@ -30,12 +30,11 @@ Mac OS X 10.10+ or Windows 9+ machine with a minimum of 8GB memory, 16GB is reco
 
 # on both nodes (this can be moved to ansible)
 
-drbdadm create-md data
-systemctl start drbd
-drbdadm up data
-
 # on primary only (node-01)
 drbdadm primary --force data
+
+# to see progress of sync do
+cat /proc/drbd
 
 # create a filesystem and mount it (on node-01)
 mkfs -t ext3 /dev/drbd1

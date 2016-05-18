@@ -32,3 +32,35 @@
     src: data.res
     dest: /etc/drbd.d/
 
+- name: disable 'usage-count'
+  sudo: yes
+  lineinfile:
+    dest: /etc/drbd.d/global_common.conf
+    regexp: '^(.*)usage-count[ ]+((yes)|(no));(.*)$'
+    line: "\\1usage-count no;\\5"
+    backrefs: yes
+
+- name: start drbd sevice
+  sudo: yes
+  service:
+    name: drbd
+    state: started
+    enabled: yes
+
+- name: check if 'data' replicated block device is created
+  sudo: yes
+  command: drbdadm dstate data
+  register: data_drbd_result
+  ignore_errors: True
+
+- name: create 'data' replicated block device is created
+  sudo: yes
+  command: drbdadm create-md data
+  when: data_drbd_result.stdout.find('No valid meta data found') != -1 or data_drbd_result.stdout.find('Diskless/') != -1
+
+- name: start drbd sevice
+  sudo: yes
+  service:
+    name: drbd
+    state: restarted
+
