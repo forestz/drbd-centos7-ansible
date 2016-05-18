@@ -23,8 +23,8 @@ Mac OS X 10.10+ or Windows 9+ machine with a minimum of 8GB memory, 16GB is reco
     vagrant up
 
     vagrant ssh node-01
-    
-    vagrant ssh node-01
+
+    vagrant ssh node-02
 
 ```
 
