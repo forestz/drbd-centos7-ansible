@@ -4,7 +4,7 @@
     "builders": [{
         "type": "virtualbox-iso",
         "guest_os_type": "RedHat_64",
-        "iso_url": "http://mirrors.163.com/centos/7.2.1511/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+        "iso_url": "http://mirrors.aliyun.com/centos/7.2.1511/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
         "iso_checksum": "99d305fa40ec9e28ef8450c3bcc45f85",
         "iso_checksum_type": "md5",
         "ssh_username": "vagrant",
