@@ -1,0 +1,34 @@
+---
+- name: enable EPEL repo
+  sudo: yes
+  yum:
+    name: epel-release
+    state: latest
+
+- name: enable elrepo
+  sudo: yes
+  yum:
+    name: http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+    state: present
+
+- name: install drbd packages
+  sudo: yes
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - drbd
+    - kmod-drbd84
+
+- name: add drbd kernel module
+  sudo: yes
+  modprobe:
+    name: drbd
+    state: present
+
+- name: copy configuration
+  sudo: yes
+  copy:
+    src: data.res
+    dest: /etc/drbd.d/
+

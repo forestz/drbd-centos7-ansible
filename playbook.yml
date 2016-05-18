@@ -1,0 +1,8 @@
+---
+# This playbook deploys drbd and postgress
+- hosts: all
+  gather_facts: yes
+  sudo: true
+  roles:
+  - drbd
+#  - postgres
