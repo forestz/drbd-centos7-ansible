@@ -62,4 +62,5 @@
   sudo: yes
   service:
     name: drbd
-    state: reloaded
+    state: restarted
+
